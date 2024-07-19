@@ -1,0 +1,22 @@
+/* You have to setup live sass compiler extension of the VSCode 
+ * (or use any other methods to compile sass) to be able to compile
+ * necessary css files. Also don't forget to specify the path of the 
+ * live sass compiler as /src/css and change the extension to .min.css
+ * from the settings page of VSCode.
+ */
+
+$light : #ffe8cb;
+$primary : #ff0000;
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+.btn-outline-primary {
+  color: $primary; // Change text color
+  border-color: $primary; // Change border color
+  
+  &:hover {
+    color: $light; // Change text color on hover
+    background-color: $primary; // Change background color on hover
+    border-color: $primary; // Change border color on hover
+  }
+}

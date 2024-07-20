@@ -18,20 +18,20 @@ const Login = ({ showLogin, handleClose }) => {
           <div class="modal-body bg-light">
             <form className="d-flex-column justify-content-between">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                <label for="login-email">Email address</label>
+                <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" placeholder="Enter email"/>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                <label for="login-password">Password</label>
+                <input type="password" class="form-control" id="login-password" placeholder="Password"/>
               </div>
                 <div class="container-fluid row justify-content-between p-3 mt-3">
                   <div class="form-group form-check col-4">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    <input type="checkbox" class="form-check-input" id="login-remember-check"/>
+                    <label class="form-check-label" for="login-remember-check">Remember me</label>
                   </div>
-                  <button type="submit" class="btn btn-primary col-4">Submit</button>
+                  <button type="submit" class="btn btn-primary col-4 text-light">Submit</button>
                 </div>
 
             </form>

@@ -1,8 +1,6 @@
-import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 import NavBar from './NavBar';
-import InfoBar from './InfoBar';
 import Home from './Home';
 import JobBoard from './JobBoard';
 import Login from './Login';

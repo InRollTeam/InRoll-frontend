@@ -20,7 +20,6 @@ function App() {
         </Switch>
         <Login showLogin={showLogin} handleClose={handleCloseLogin} />
         {showLogin ? <div class={`modal-backdrop fade ${showLogin ? 'show' : ''}`}></div> : null}
-        <InfoBar />
       </Router>
     </div>
   );

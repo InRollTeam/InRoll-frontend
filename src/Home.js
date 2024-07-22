@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import placeHolder from './images/placeHolderCorpo.png';
+import './css/styles.css';
 
 const Home = () => {
   return (

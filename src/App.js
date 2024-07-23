@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import Home from './Home';
 import JobBoard from './JobBoard';
 import Login from './Login';
+import InfoBar from './InfoBar';
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
   const handleCloseLogin = () => setShowLogin(false);
 
   return (
-    <div className="App container-fluid bg-light py-1">
+    <div className="App container-fluid bg-light py-1 pb-0">
       <Router>
         <NavBar showLogin={showLogin} setShowLogin={setShowLogin} />
         <Switch>
@@ -20,6 +21,7 @@ function App() {
         </Switch>
         <Login showLogin={showLogin} handleClose={handleCloseLogin} />
         {showLogin ? <div class={`modal-backdrop fade ${showLogin ? 'show' : ''}`}></div> : null}
+        <InfoBar />
       </Router>
     </div>
   );

@@ -1,6 +1,6 @@
 const InfoBar = () => {
   return (
-    <div className="InfoBar container-fluid bg-dark row justify-content-between pb-5">
+    <div className="InfoBar container-fluid bg-dark row justify-content-between pb-5 pt-2">
       <div className="col-12 col-lg-4 bg-dark p-3 mx-5">
         <h3 className="text-white">Inroll</h3>
         <p className="text-white">

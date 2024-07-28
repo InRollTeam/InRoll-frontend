@@ -13,7 +13,8 @@ const Test = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/placeholder/${id}`);
+        //alttaki çağrı düzeltilmeli
+        const response = await axios.get(`/api/GET/TEST/${id}`);
         
         setData(response.data);
       } catch (err) {

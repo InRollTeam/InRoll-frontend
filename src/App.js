@@ -5,6 +5,8 @@ import Home from './Home';
 import JobBoard from './JobBoard';
 import Login from './Login';
 import InfoBar from './InfoBar';
+import Test from './Test';
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/"> <Home /> </Route>
           <Route exact path="/Jobs"> <JobBoard /> </Route>
+          <Route path="/Test/:id"> <Test /> </Route>
         </Switch>
         <Login showLogin={showLogin} handleClose={handleCloseLogin} />
         {showLogin ? <div class={`modal-backdrop fade ${showLogin ? 'show' : ''}`}></div> : null}

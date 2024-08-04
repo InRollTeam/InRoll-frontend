@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Test = ({test, setTest}) => {
+const Test = ({test, setTest, results, setResults}) => {
 
-  const { id } = useParams();
+  const { test_id, user_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,7 +13,7 @@ const Test = ({test, setTest}) => {
     const fetchData = async () => {
       try {
         //alttaki çağrı düzeltilmeli
-        const response = await axios.get(`/api/tests/${id}`);
+        const response = await axios.get(`/api/tests/${test_id}`);
         
         setTest(response.test);
       } catch (err) {
@@ -103,7 +103,13 @@ const Test = ({test, setTest}) => {
     };
 
     fetchData();
-  }, [id]);
+  }, [test_id]);
+
+  useEffect(() => {
+    setResults({"test_id": test_id,
+                "user_id": user_id,
+                "answers": new Array(test ? test.questions.length : 0)})
+  }, [test_id, user_id, test])
 
   if (loading) return <p>Loading...</p>;
 

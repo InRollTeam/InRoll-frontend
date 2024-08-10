@@ -8,14 +8,24 @@ const AddChoices = ( {questions, setQuestions, index} ) => {
     setQuestions(updatedQuestions);
   }, [])
 
+  const updateChoice = (body, choiceIndex) => {
+    const updatedQuestions = [...questions];
+    if(!updatedQuestions[index].choices) updatedQuestions[index].choices = [];
+    updatedQuestions[index].choices[choiceIndex] = { ...updatedQuestions[index].choices[choiceIndex], body: body };
+    setQuestions(updatedQuestions);
+  };
+
+
   const addChoice = () => {
     const updatedQuestions = [...questions];
-    updatedQuestions[index].choices.push({ body: "" });
+    if(!updatedQuestions[index].choices) updatedQuestions[index].choices = [];
+    updatedQuestions[index].choices.push({ "body": "" });
     setQuestions(updatedQuestions);
   };
 
   const deleteChoice = (choiceIndex) => {
     const updatedQuestions = [...questions];
+    if(!updatedQuestions[index].choices) updatedQuestions[index].choices = [];
     updatedQuestions[index].choices.splice(choiceIndex, 1);
     setQuestions(updatedQuestions);
   }
@@ -29,7 +39,7 @@ const AddChoices = ( {questions, setQuestions, index} ) => {
             <div key={choiceIndex} className="container-fluid">
               <div className="container-md bg-light d-flex flew-row m-1">
                 <button className="btn btn-danger align-self-end m-1" type="button" onClick={() => deleteChoice(choiceIndex)}> <i class="bi bi-trash"></i> </button>
-                <textarea className="form-control m-0" id={`choice-body-${choiceIndex}`} rows={1}/>
+                <textarea className="form-control m-0" id={`choice-body-${choiceIndex}`} rows={1} onChange={(e) => {updateChoice(e.target.value, choiceIndex)}}/>
               </div>
             </div>
           )) :

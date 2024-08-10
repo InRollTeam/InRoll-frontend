@@ -25,74 +25,66 @@ const Test = ({test, setTest, results, setResults}) => {
         setTest
         (
           {
-            "id": "test_001",
+            "id": "t-0",
             "name": "Sample Test",
             "body": "This is a sample test designed to demonstrate the JSON structure.",
             "time": "10",
             "questions": [
               {
-                "id": "q1",
+                "id": "q-0-0",
                 "body": "What is the capital of France?",
                 "question_type" : "MC",
                 "choices": [
                   {
-                    "id": "c1",
+                    "id": "c-0-0-0",
                     "body": "Paris",
-                    "is_true": true
                   },
                   {
-                    "id": "c2",
+                    "id": "c-0-0-1",
                     "body": "London",
-                    "is_true": false
                   },
                   {
-                    "id": "c3",
+                    "id": "c-0-0-2",
                     "body": "Berlin",
-                    "is_true": false
                   }
                 ]
               },
               {
-                "id": "q2",
+                "id": "q-0-1",
                 "body": "Which planet is known as the Red Planet?",
                 "question_type" : "MC",
                 "choices": [
                   {
-                    "id": "c1",
+                    "id": "c-0-1-0",
                     "body": "Earth",
-                    "is_true": false
                   },
                   {
-                    "id": "c2",
+                    "id": "c-0-1-1",
                     "body": "Mars",
                     "is_true": true
                   },
                   {
-                    "id": "c3",
+                    "id": "c-0-1-2",
                     "body": "Jupiter",
-                    "is_true": false
                   }
                 ]
               },
               {
-                "id": "q3",
+                "id": "q-0-2",
                 "body": "What is the largest ocean on Earth?",
                 "question_type" : "MC",
                 "choices": [
                   {
-                    "id": "c1",
+                    "id": "c-0-2-0",
                     "body": "Atlantic Ocean",
-                    "is_true": false
                   },
                   {
-                    "id": "c2",
+                    "id": "c-0-2-1",
                     "body": "Indian Ocean",
-                    "is_true": false
                   },
                   {
-                    "id": "c3",
+                    "id": "c-0-2-2",
                     "body": "Pacific Ocean",
-                    "is_true": true
                   }
                 ]
               }

@@ -10,7 +10,7 @@ const ChoicesMC = ({choices, results, setResults, idx}) => {
   };
 
   useEffect(() => {
-    if(results.answers[idx]) setSelectedChoice(results.answers[idx].index);
+    if(results.answers[idx]) setSelectedChoice(results.answers[idx].answer_id);
     else setSelectedChoice(null);
   }, [choices, idx]);
 
@@ -26,8 +26,8 @@ const ChoicesMC = ({choices, results, setResults, idx}) => {
         {
           choices.map((choice, index) => (
             <div key={index} className="form-check">
-              <input className="form-check-input" type="radio" name="choice" id={`choice${index}`} checked={selectedChoice === index} onClick={() => {updateResults({"index":index, "answer_id": choice.id});setSelectedChoice(index);}} />
-              <label className="form-check-label" htmlFor={`choice${index}`}>{choice.body}</label>
+              <input className="form-check-input" type="radio" name="choice" id={`${choice.id}`} checked={selectedChoice === choice.id} onClick={() => { updateResults({"answer_id": choice.id}); setSelectedChoice(choice.id); }} />
+              <label className="form-check-label" htmlFor={`${choice.id}`}>{choice.body}</label>
             </div>
           ))
         }

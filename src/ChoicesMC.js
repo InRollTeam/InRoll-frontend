@@ -16,6 +16,7 @@ const ChoicesMC = ({choices, results, setResults, idx}) => {
 
 
   useEffect(() => {
+    //TODO: send results to the server
     console.log(results);
   }, [results]);
 

@@ -20,13 +20,13 @@ const Question = ({ questions, results, setResults }) => {
           }
           <div className="container-lg d-flex justify-content-between my-4 px-5 row">
             <Link to={`${questionIndex-1}`} 
-                  className={`btn btn-primary text-light col-4 col-lg-2 ${questionIndex === 0 && "disabled"}`}>
+                  className={`btn btn-primary text-light col-4 col-lg-2 ${questionIndex === 0 && "disabled"}`} >
                     Previous
             </Link>
             {
               questionIndex < questions.length-1 ?
-              <Link to={`${questionIndex+1}`} className="btn btn-primary text-light col-4 col-lg-2"> Next </Link> :
-              <Link to={`#`} className="btn btn-primary text-light col-sm-4 col-lg-2"> Finish </Link>             
+              <Link to={`${questionIndex+1}`} className="btn btn-primary text-light col-4 col-lg-2" > Next </Link> :
+              <Link to={`../finished`} className="btn btn-primary text-light col-sm-4 col-lg-2" onClick={() => { results.finished = true; }}> Finish </Link>            
             }
           </div>
         </div>

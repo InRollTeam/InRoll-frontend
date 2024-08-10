@@ -98,9 +98,10 @@ const Test = ({test, setTest, results, setResults}) => {
   }, [test_id]);
 
   useEffect(() => {
-    setResults({"test_id": test_id,
-                "user_id": user_id,
-                "answers": new Array(test ? test.questions.length : 0)})
+    setResults({"test_id" : test_id,
+                "user_id" : user_id,
+                "answers" : new Array(test ? test.questions.length : 0),
+                "finished": false })
   }, [test_id, user_id, test])
 
   if (loading) return <p>Loading...</p>;
@@ -131,7 +132,7 @@ const Test = ({test, setTest, results, setResults}) => {
         </div>
       </div>
 
-      <Link to={`questions/0`} className="btn btn-primary text-light align-self-center col-4 col-md-3 col-lg-2 m-5">Start The Test</Link>
+      <Link to={test.finished ? `finished` : `questions/0`} className="btn btn-primary text-light align-self-center col-4 col-md-3 col-lg-2 m-5">Start The Test</Link>
       
     </div>
   );

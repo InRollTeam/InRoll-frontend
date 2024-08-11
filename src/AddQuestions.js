@@ -49,7 +49,6 @@ const AddQuestions = ( {questions, setQuestions} ) => {
                     <label htmlFor={`question-body-${index}`} className="form-label m-0"> Question </label>
                     <textarea className="form-control m-0" id={`question-body-${index}`} rows="3" onChange={(e) => {updateQuestion(e.target.value, index)}}/>
                   </div>
-                  
                   {
                     questions ? 
                     <AddChoices questions={questions} setQuestions={setQuestions} index={index} /> :

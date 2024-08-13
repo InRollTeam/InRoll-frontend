@@ -14,7 +14,7 @@ const Question = ({ questions, results, setResults }) => {
         <div className="card-body">
           <p className="card-text">{questions[questionIndex].body}</p>
           {
-            questions[questionIndex].question_type === "MC"
+            "choices" in questions[questionIndex]
             ? <ChoicesMC choices={questions[questionIndex].choices} results={results} setResults={setResults} idx={questionIndex} />
             : null
           }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const JobBoard = () => {
   return (
-    <div className="JobBoard container-fluid bg-light py-5 justify-content-center row">
+    <div className="JobBoard container-fluid py-5 justify-content-center row" style={{ background: "linear-gradient(to right, #e2e2e2, #c9d6ff)"}}>
       <div class="card col-10 col-md-6 py-5">
         <div class="card-body d-flex flex-column text-center py-3 py-md-5">
           <h5 class="card-title fs-1 my-5">Coming Soon!</h5>

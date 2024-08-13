@@ -17,7 +17,7 @@ function App() {
   const [results, setResults] = useState(null);
 
   return (
-    <div className="App container-fluid bg-light py-1 pb-0 d-flex flex-column">
+    <div className="App container-fluid py-1 pb-0 d-flex flex-column" style={{ background: "linear-gradient(to right, #e2e2e2, #c9d6ff)"}}>
       <Router>
         <NavBar showLogin={showLogin} setShowLogin={setShowLogin} />
         <Switch>

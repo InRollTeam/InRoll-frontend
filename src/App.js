@@ -31,7 +31,7 @@ function App() {
             <Test test={test} setTest={setTest} results={results} setResults={setResults}/> 
           </Route>
 
-          <Route exact path = "/:company_id/AdminPanel/CreateTest"> <CreateTest /> </Route>
+          <Route exact path = "/:recruiter_id/AdminPanel/CreateTest"> <CreateTest /> </Route>
 
         </Switch>
         <Login showLogin={showLogin} handleClose={handleCloseLogin} />

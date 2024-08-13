@@ -19,7 +19,7 @@ const AddChoices = ( {questions, setQuestions, index} ) => {
   const addChoice = () => {
     const updatedQuestions = [...questions];
     if(!updatedQuestions[index].choices) updatedQuestions[index].choices = [];
-    updatedQuestions[index].choices.push({ "body": "", "isTrue": false});
+    updatedQuestions[index].choices.push({ "body": "", "is_true": false});
     setQuestions(updatedQuestions);
   };
 
@@ -35,9 +35,9 @@ const setTrue = (choiceIndex) => {
   
   if (!updatedQuestions[index].choices) updatedQuestions[index].choices = [];
 
-  updatedQuestions[index].choices.forEach(choice => choice.isTrue = false);
+  updatedQuestions[index].choices.forEach(choice => choice.is_true = false);
 
-  updatedQuestions[index].choices[choiceIndex] = {...updatedQuestions[index].choices[choiceIndex], isTrue: true};
+  updatedQuestions[index].choices[choiceIndex] = {...updatedQuestions[index].choices[choiceIndex], is_true: true};
 
   setQuestions(updatedQuestions);
 };
@@ -52,7 +52,7 @@ const setTrue = (choiceIndex) => {
               <div className="container-md bg-light d-flex flew-row m-1">
                 <button className="btn btn-danger align-self-end m-1" type="button" onClick={() => deleteChoice(choiceIndex)}> <i class="bi bi-trash"></i> </button>
                 <textarea className="form-control m-0" id={`choice-body-${choiceIndex}`} rows={1} onChange={(e) => {updateChoice(e.target.value, choiceIndex)}}/>
-                <button className={`btn ${choice.isTrue ? "btn-success" : "btn-muted"} align-self-end m-1`} type="button" onClick={() => {setTrue(choiceIndex)}}> <i class="bi bi-check-lg"></i> </button>
+                <button className={`btn ${choice.is_true ? "btn-success" : "btn-muted"} align-self-end m-1`} type="button" onClick={() => {setTrue(choiceIndex)}}> <i class="bi bi-check-lg"></i> </button>
               </div>
             </div>
           )) :

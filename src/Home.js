@@ -15,7 +15,6 @@ const Home = () => {
       
       <img className="col-4 rounded-pill overflow-hidden m-5 d-none d-md-block" src={placeHolder} alt="Logo" />
     </div>
-    
   );
 }
  

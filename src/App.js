@@ -7,6 +7,7 @@ import Login from './Login';
 import InfoBar from './InfoBar';
 import Test from './Test';
 import Question from './Question';
+import CreateTest from './CreateTest';
 
 
 
@@ -29,6 +30,9 @@ function App() {
           <Route exact path="/:user_id/Test/:test_id/"> 
             <Test test={test} setTest={setTest} results={results} setResults={setResults}/> 
           </Route>
+
+          <Route exact path = "/:company_id/AdminPanel/CreateTest"> <CreateTest /> </Route>
+
         </Switch>
         <Login showLogin={showLogin} handleClose={handleCloseLogin} />
         {showLogin ? <div class={`modal-backdrop fade ${showLogin ? 'show' : ''}`}></div> : null}

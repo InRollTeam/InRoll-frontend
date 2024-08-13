@@ -13,7 +13,8 @@ const Test = ({test, setTest, results, setResults}) => {
     const fetchData = async () => {
       try {
         //alttaki çağrı düzeltilmeli
-        const response = await axios.get(`/api/tests/${test_id}`);
+        const response = await axios.get(`http://localhost:8000/api/tests/${test_id}`);
+        console.log(response)
         
         setTest(response.test);
       } catch (err) {
@@ -102,7 +103,7 @@ const Test = ({test, setTest, results, setResults}) => {
                 "user_id" : user_id,
                 "answers" : new Array(test ? test.questions.length : 0),
                 "finished": false })
-  }, [test_id, user_id, test])
+  }, [test_id, user_id, test]);
 
   if (loading) return <p>Loading...</p>;
 

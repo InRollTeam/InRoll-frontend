@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-
+  
 const AddChoices = ( {questions, setQuestions, index} ) => {
-
+  
   useEffect(()=>{
     const updatedQuestions = [...questions];
     if(!updatedQuestions[index].choices) updatedQuestions[index].choices = [];
     setQuestions(updatedQuestions);
   }, [])
-
+  
   const updateChoice = (body, choiceIndex) => {
     const updatedQuestions = [...questions];
     if(!updatedQuestions[index].choices) updatedQuestions[index].choices = [];

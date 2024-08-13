@@ -13,7 +13,8 @@ const Test = ({test, setTest, results, setResults}) => {
     const fetchData = async () => {
       try {
         //alttaki çağrı düzeltilmeli
-        const response = await axios.get(`/api/tests/${test_id}`);
+        const response = await axios.get(`http://localhost:8000/api/tests/${test_id}`);
+        console.log(response)
         
         setTest(response.test);
       } catch (err) {

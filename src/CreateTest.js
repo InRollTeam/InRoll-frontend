@@ -4,7 +4,7 @@ import AddQuestions from "./AddQuestions";
 import axios from "axios";
 
 const CreateTest = () => {
-  const { recruiter_id } = useParams(null);
+  const { recruiter_id } = useParams();
   const [duration, setDuration] = useState('');
   const [untilDate, setUntilDate] = useState('');
   const [title, setTitle] = useState('');
@@ -12,29 +12,19 @@ const CreateTest = () => {
   const [questions, setQuestions] = useState([])
   const [testId, setTestId] = useState(null)
 
-  const [test, setTest] = useState({
-    recruiter: recruiter_id,
-    duration: duration,
-    until_date: untilDate,
-    title: title,
-    body: body,
-    questions: questions,
-  });
-
-  useEffect(() => {
-    setTest({
-      recruiter: recruiter_id,
-      duration: duration,
-      until_date: untilDate,
-      title: title,
-      body: body,
-      questions: questions,
-    });
-  }, [recruiter_id, duration, untilDate, title, body, questions]);
-
   const saveTest = () => {
+    
+    const test = {
+      "recruiter": recruiter_id,
+      "duration": duration,
+      "until_date": untilDate,
+      "title": title,
+      "body": body,
+      "questions": questions,
+    };
+
     console.log(test);
-    if(testId == null) {
+    if(testId === null) {
       axios.post('http://localhost:8000/api/tests/', test)
         .then(response => {
           //console.log('Success:', response.data);
@@ -45,7 +35,6 @@ const CreateTest = () => {
         });
     }
     else {
-      console.log(test)
       axios.put(`http://localhost:8000/api/tests/${testId}/`, test)
         .then(response => {
           console.log('Success:', response.data);
@@ -83,7 +72,7 @@ const CreateTest = () => {
           <AddQuestions questions={questions} setQuestions={setQuestions} />
         </div>
 
-        <button type="button" className="btn fs-3 align-self-center btn-outline-light" onClick={saveTest}>SAVE <i class="bi bi-floppy-fill"></i></button>
+        <button type="button" className="btn fs-3 align-self-center btn-outline-light" onClick={() => saveTest()}>SAVE <i class="bi bi-floppy-fill"></i></button>
     </div>
   );
 }

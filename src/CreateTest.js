@@ -48,7 +48,6 @@ const CreateTest = () => {
         })
         .catch(error => {
           if (error.response && error.response.status === 404) {
-            // If the test does not exist, directly create a new one
             axios.post('http://localhost:8000/api/tests/', test)
               .then(response => {
                 setTestId(response.data.id);

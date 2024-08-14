@@ -23,11 +23,10 @@ const CreateTest = () => {
       "questions": questions,
     };
 
-    console.log(test);
     if(testId === null) {
       axios.post('http://localhost:8000/api/tests/', test)
         .then(response => {
-          //console.log('Success:', response.data);
+          console.log('Success:', response.data);
           setTestId(response.data.id);
         })
         .catch(error => {
@@ -35,13 +34,34 @@ const CreateTest = () => {
         });
     }
     else {
-      axios.put(`http://localhost:8000/api/tests/${testId}/`, test)
+      
+      axios.get(`http://localhost:8000/api/tests/${testId}/`)
         .then(response => {
-          console.log('Success:', response.data);
+          return axios.delete(`http://localhost:8000/api/tests/${testId}/`);      
+        })
+        .then(() => {
+          return axios.post('http://localhost:8000/api/tests/', test);
+        })
+        .then(response => {
+          setTestId(response.data.id);
+          console.log("Success:", response.data);
         })
         .catch(error => {
-          console.error('Error:', error);
+          if (error.response && error.response.status === 404) {
+            // If the test does not exist, directly create a new one
+            axios.post('http://localhost:8000/api/tests/', test)
+              .then(response => {
+                setTestId(response.data.id);
+                console.log('Success:', response.data);
+              })
+              .catch(postError => {
+                console.error('Error during test creation:', postError);
+              });
+          } else {
+            console.error('Error:', error);
+            }
         });
+
     }
   };
 
@@ -72,7 +92,7 @@ const CreateTest = () => {
           <AddQuestions questions={questions} setQuestions={setQuestions} />
         </div>
 
-        <button type="button" className="btn fs-3 align-self-center btn-outline-light" onClick={() => saveTest()}>SAVE <i class="bi bi-floppy-fill"></i></button>
+        <button type="button" className="btn fs-3 align-self-center btn-outline-light" onClick={saveTest}>SAVE <i class="bi bi-floppy-fill"></i></button>
     </div>
   );
 }

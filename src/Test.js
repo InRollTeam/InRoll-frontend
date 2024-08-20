@@ -59,7 +59,6 @@ const Test = ({test, setTest, results, setResults}) => {
       .then(response => {
         setUsedId(response.data.user_id);
 
-        // Navigate based on test.finished condition
         if (test.finished) {
           history.push('finished');
         } else {

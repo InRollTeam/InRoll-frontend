@@ -24,10 +24,10 @@ function App() {
         <Switch>
           <Route exact path="/"> <Home /> </Route>
           <Route exact path="/Jobs"> <JobBoard /> </Route>
-          <Route exact path="/:user_id/Test/questions/:num"> 
+          <Route exact path="/test/questions/:num"> 
             {test ? <Question questions={test.questions} results={results} setResults={setResults} /> : null} 
           </Route>
-          <Route exact path="/:user_id/Test/:test_id/"> 
+          <Route exact path="/test/:test_id/"> 
             <Test test={test} setTest={setTest} results={results} setResults={setResults}/> 
           </Route>
 

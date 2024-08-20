@@ -1,13 +1,24 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import UserForm from "./UserForm";
+
 
 const Test = ({test, setTest, results, setResults}) => {
 
-  const { test_id, user_id } = useParams();
+  const { test_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userId, setUsedId] = useState(null);
+  const [candidateData, setCandidateData] = useState({
+    password: "",
+    email: "",
+    phone_number: "",
+    first_name: "",
+    last_name: ""
+  });
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +40,38 @@ const Test = ({test, setTest, results, setResults}) => {
 
   useEffect(() => {
     setResults({"test_id" : test_id,
-                "user_id" : user_id,
+                "user_id" : userId,
                 "answers" : new Array(test ? test.questions.length : 0),
                 "finished": false })
-  }, [test_id, user_id, test]);
+  }, [test_id, userId, test]);
 
+  const history = useHistory();
+
+  const handleStart = () => {
+    for (let key in candidateData) {
+      if (candidateData[key] === "") {
+        alert("boş candidate fieldı olmamalı");
+        return;
+      }
+    }
+
+    axios.post("http://localhost:8000/api/candidates/", candidateData)
+      .then(response => {
+        setUsedId(response.data.user_id);
+
+        // Navigate based on test.finished condition
+        if (test.finished) {
+          history.push('finished');
+        } else {
+          history.push('questions/0');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  
   if (loading) return <p>Loading...</p>;
 
   //alttaki satır geri eklenmeli (veya düzgün bir error sayfası ayarlanabilir)
@@ -62,7 +100,9 @@ const Test = ({test, setTest, results, setResults}) => {
         </div>
       </div>
 
-      <Link to={test.finished ? `finished` : `questions/0`} className="btn btn-primary text-light align-self-center col-4 col-md-3 col-lg-2 m-5">Start The Test</Link>
+      <UserForm candidateData={candidateData} setCandidateData={setCandidateData}/>
+
+      <button onClick={handleStart} to={test.finished ? `finished` : `questions/0`} className="btn btn-primary text-light align-self-center col-4 col-md-3 col-lg-2 m-5">Start The Test</button>
       
     </div>
   );

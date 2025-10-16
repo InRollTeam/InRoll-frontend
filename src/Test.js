@@ -8,6 +8,12 @@ const Test = ({test, setTest, results, setResults}) => {
   const { test_id, user_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [kvkkChecked, setKvkkChecked] = useState(false);
+  const [gizlilikChecked, setGizlilikChecked] = useState(false);
+
+  const isFormValid = email && password && kvkkChecked && gizlilikChecked;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,7 +115,7 @@ const Test = ({test, setTest, results, setResults}) => {
   //alttaki satır geri eklenmeli (veya düzgün bir error sayfası ayarlanabilir)
   //if (error) return <p>Error: {error.message}</p>;
   if(test == null) return(<></>)
-  return (
+    return (
     <div className="Test container-fluid p-5 row d-flex flex-column justify-content-center">
 
       <h1 className="text-center m-3">{test.name}</h1>
@@ -121,19 +127,67 @@ const Test = ({test, setTest, results, setResults}) => {
             <p className="col-4 text-center fw-bold">Number of questions: {test.questions.length}</p>
       </div>
 
+      <div className="row justify-content-center">
+        <form className="col-4">
+          <div className="form-group mb-3">
+            <label htmlFor="email">Email:</label>
+            <input 
+              type="email" 
+              className="form-control" 
+              id="email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required 
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="password">Password:</label>
+            <input 
+              type="password" 
+              className="form-control" 
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required 
+            />
+          </div>
+        </form>
+      </div>
+
       <div className="d-flex flex-column align-self-center col-5">
         <div className="form-group form-check">
-          <input type="checkbox" className="form-check-input" id="test-kvkk-check"/>
-          <label className="form-check-label" for="test-kvkk-check"><Link to="/KVKK">KVKK</Link>'yı okudum ve kabul ediyorum.</label>
+          <input 
+            type="checkbox" 
+            className="form-check-input" 
+            id="test-kvkk-check" 
+            checked={kvkkChecked}
+            onChange={() => setKvkkChecked(!kvkkChecked)}
+          />
+          <label className="form-check-label" htmlFor="test-kvkk-check">
+            <Link to="/KVKK">KVKK</Link>'yı okudum ve kabul ediyorum.
+          </label>
         </div>
         <div className="form-group form-check">
-          <input type="checkbox" className="form-check-input" id="test-gizlilik-check"/>
-          <label className="form-check-label" for="test-gizlilik-check"><Link to="/GPVK">Gizlilik Politikası ve Veri Kullanımı</Link>nı okudum ve kabul ediyorum.</label>
+          <input 
+            type="checkbox" 
+            className="form-check-input" 
+            id="test-gizlilik-check"
+            checked={gizlilikChecked}
+            onChange={() => setGizlilikChecked(!gizlilikChecked)}
+          />
+          <label className="form-check-label" htmlFor="test-gizlilik-check">
+            <Link to="/GPVK">Gizlilik Politikası ve Veri Kullanımı</Link>nı okudum ve kabul ediyorum.
+          </label>
         </div>
       </div>
 
-      <Link to={test.finished ? `finished` : `questions/0`} className="btn btn-primary text-light align-self-center col-4 col-md-3 col-lg-2 m-5">Start The Test</Link>
-      
+      <Link 
+        to={isFormValid && test.finished ? `finished` : `questions/0`} 
+        className={`btn btn-primary text-light align-self-center col-4 col-md-3 col-lg-2 m-5 ${!isFormValid ? 'disabled' : ''}`}
+      >
+        Start The Test
+      </Link>
+
     </div>
   );
 }
